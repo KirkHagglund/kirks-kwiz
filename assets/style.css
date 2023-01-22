@@ -1,0 +1,72 @@
+* {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: lighter;
+    --background: rgb(69, 44, 121);
+    --mainfont: rgb(214, 214, 228);
+    --textfont: rgb(10, 10, 145);
+}
+
+.banner {
+    display: inline-flex;
+    background-color: var(--background);
+    width: 100%;
+    justify-content: space-between;
+    height: fit-content;
+}
+
+header h2, 
+h3 {
+    color: var(--mainfont);
+    margin: 20px;
+    padding: 20px;
+    letter-spacing: 0.75px;
+}
+
+.main-container {
+    display: inline-flex;
+    width: 100%;
+    background-image: url(./images/matrix.jpg);
+    height: 1000px;
+}
+
+.quiz-container {
+    width: 50%;
+    margin: 50px auto;
+    justify-content: flex-start;
+    border: 2px solid var(--textfont);
+    height: 300px;
+    display: inline-flex;
+    flex-direction: column;
+    z-index: 1;
+    background-color: var(--mainfont);
+    border-radius: 10px;
+}
+
+h1 {
+    color: var(--textfont);
+    text-align: center;
+    font-size: 2rem;
+}
+
+.start-button {
+    margin: 20px auto;
+    height: fit-content;
+    border: 2px solid var(--background);
+    font-size: 1.25rem;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 3px 3px 5px grey;
+}
+
+.start-button:hover {
+    background-color: var(--background);
+    color: var(--mainfont);
+    box-shadow: 3px 3px 5px grey;
+}
+
+.start-button:active {
+    background-color: var(--background);
+    color: var(--mainfont);
+    margin-top: 22px;
+    box-shadow: none;  
+}
