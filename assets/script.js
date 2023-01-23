@@ -9,11 +9,14 @@ let questionSlide = document.querySelector(".question");
 let mainTitle = document.querySelector("h1");
 let questionContent = document.querySelector(".question-content");
 let secondsLeft = 75;
-questionContent.hidden = true
-
-
-
-
+let answerOptions = document.querySelector(".answer-options");
+questionContent.hidden = true;
+answerOptions.hidden = true;
+let answerOne = document.querySelector("#answer-one");
+let answerTwo = document.querySelector("#answer-two");
+let answerThree = document.querySelector("#answer-three");
+let answerFour = document.querySelector("#answer-four");
+let functionArray = [answerOne, answerTwo, answerThree, answerFour];
 
 //Create function to start game with an event listener on start game button
 let startGame = function() {
@@ -28,18 +31,54 @@ startButton.addEventListener("click", startGame);
 function startTimer() {
     var gameTime = setInterval(function() {
         secondsLeft--;
-        timeDisplay.textContent = "TIME LEFT: " + secondsLeft;      
+        timeDisplay.textContent = "TIME LEFT: " + secondsLeft;  
+        
+        if (secondsLeft === 0) {
+            clearInterval(gameTime);
+            questionContent.textContent = "You ran out of time!";
+            answerOptions.hidden = true;
+        };
     }, 1000);
     startButton.hidden = true;
     mainTitle.hidden = true;
     questionContent.hidden = false;  
-}
+    answerOptions.hidden = false;
+};
 
 //Create a generate quiz function to nest inside the start game function
 function generateQuiz() {
-    //Must build a function here that displays the first question/answer panel
-}
+    questionContent.textContent = "Arrays in JavaScript can be used to store:"
 
+    answerOne.addEventListener("click", wrongAnswer());
+    answerTwo.addEventListener("click", wrongAnswer());
+    answerThree.addEventListener("click", wrongAnswer());
+    answerFour.addEventListener("click", rightAnswer());    
+};
+
+//Create two functions, one for right answers and one for wrong answers
+function rightAnswer() {
+
+};
+
+function wrongAnswer() {
+
+};
+
+function questionOne() {
+
+};
+
+function questionTwo() {
+
+};
+
+function questionThree() {
+
+};
+
+function questionFour() {
+
+};
 /*Quiz needs to generate a new window with a set of four buttons with one correct answer
 above the buttons will be text that reads the question
 if the correct answer is hit, move on to next question
