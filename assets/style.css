@@ -55,7 +55,7 @@ h1 {
     font-size: 1.25rem;
     border-radius: 5px;
     padding: 10px;
-    box-shadow: 3px 3px 5px grey;
+    box-shadow: 0px 3px 5px grey;
     background-color: var(--mainfont);
     color: var(--textfont);
 }
@@ -63,7 +63,7 @@ h1 {
 .start-button:hover {
     background-color: var(--background);
     color: var(--mainfont);
-    box-shadow: 3px 3px 5px grey;
+    box-shadow: 0px 3px 5px grey;
 }
 
 .start-button:active {
@@ -71,4 +71,10 @@ h1 {
     color: var(--mainfont);
     margin-top: 22px;
     box-shadow: none;  
+}
+
+.question-content {
+    text-align: center;
+    color: var(--textfont);
+    font-size: 1.5rem;
 }

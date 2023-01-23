@@ -6,7 +6,10 @@ let timeDisplay = document.getElementById("time-display");
 let mainSection = document.querySelector(".main-container");
 let startButton = document.getElementById("start-button");
 let questionSlide = document.querySelector(".question");
+let mainTitle = document.querySelector("h1");
+let questionContent = document.querySelector(".question-content");
 let secondsLeft = 75;
+questionContent.hidden = true
 
 
 
@@ -27,7 +30,9 @@ function startTimer() {
         secondsLeft--;
         timeDisplay.textContent = "TIME LEFT: " + secondsLeft;      
     }, 1000);
-    startButton.hidden = true;   
+    startButton.hidden = true;
+    mainTitle.hidden = true;
+    questionContent.hidden = false;  
 }
 
 //Create a generate quiz function to nest inside the start game function
