@@ -27,7 +27,6 @@ let answerThreeArr = ["Delicious", "Blue", "JavaScript", "New"];
 let answerFourArr = ["Insulting", "Not Real", "The Meaninglessness of Life", "Shoe"];
 let currentQuestion = 0;
 let correctAnswerARR = ["Red", "Blue", "JavaScript", "You"];
-finalScore = "";
 
 //Function section
 
@@ -46,7 +45,7 @@ function startTimer() {
         secondsLeft--;
         timeDisplay.textContent = "TIME LEFT: " + secondsLeft;  
         
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(gameTime);
             mainTitle.hidden = false;
             questionContent.hidden = true;
@@ -95,7 +94,7 @@ function answerEval(event) {
 function endQuiz() {
     questionContent.hidden = true;
     answerOptions.hidden = true;
-    finalScore = secondsLeft;
+    //finalScore = secondsLeft;
     console.log(finalScore);
     clearInterval(gameTime);
     mainTitle.hidden = false;
