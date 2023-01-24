@@ -14,12 +14,11 @@ let answerFour = document.getElementById("answer-four");
 questionContent.hidden = true;
 let answerOptions = document.querySelector(".answer-options");
 answerOptions.hidden = true;
+let rightWrong = document.querySelector('.right-wrong');
+rightWrong.hidden = true;
 
 //Question and answer array assignments
-
-/*
-const questionArray = [ { question: "Roses Are:", answers: ["Red", "Stinky", Delicious, Insulting], correctAnswer: 1}]
-*/ 
+ 
 let questionList = ["Roses are:", "Violets are:", "I'm learning:", "What about:"];
 let answerOneArr = ["Red", "Also Red", "To Speak Klingon", "Yew"];
 let answerTwoArr = ["Stinky", "Weapons", "The Art of War", "You"];
@@ -38,17 +37,20 @@ let startGame = function() {
 };
 
 
-
+let gameTime = 0;
 
 //Create a start timer function to nest inside the start game function
 function startTimer() {
-    var gameTime = setInterval(function() {
+    /*var */gameTime = setInterval(function() {
         secondsLeft--;
         timeDisplay.textContent = "TIME LEFT: " + secondsLeft;  
         
         if (secondsLeft === 0) {
             clearInterval(gameTime);
-            questionContent.textContent = "You ran out of time!";
+            mainTitle.hidden = false;
+            questionContent.hidden = true;
+            rightWrong.hidden = true;
+            mainTitle.textContent = "You ran out of time!";
             answerOptions.hidden = true;
             startButton.hidden = false;
             secondsLeft = 75;
@@ -58,6 +60,7 @@ function startTimer() {
     mainTitle.hidden = true;
     questionContent.hidden = false;  
     answerOptions.hidden = false;
+    rightWrong.hidden = false;
 };
 
 //Create a generate quiz function to nest inside the start game function
@@ -75,13 +78,19 @@ function generateQuiz() {
 function answerEval(event) {
     console.log(event.target.textContent);
     if (event.target.textContent !== correctAnswerARR[currentQuestion]) {      
-        secondsLeft = secondsLeft - 15;     
+        secondsLeft = secondsLeft - 15;
+        rightWrong.textContent = "Wrong!"
+
+    } else if (event.target.textContent === correctAnswerARR[currentQuestion]) {
+        currentQuestion++;
+        generateQuiz();
+        rightWrong.textContent = "Correct!";
     };
-    if (currentQuestion == questionList.length - 1) {
+    if (currentQuestion == questionList.length) {
         endQuiz();
     };
-    currentQuestion++;
-    generateQuiz();
+    //currentQuestion++;
+    //generateQuiz();
 };
 
 function endQuiz() {
@@ -90,6 +99,12 @@ function endQuiz() {
     finalScore = secondsLeft;
     console.log(finalScore);
     clearInterval(gameTime);
+    mainTitle.hidden = false;
+    mainTitle.textContent = 'Great Job!';
+    startButton.hidden = false;
+    //rightWrong.hidden = true;
+    currentQuestion = 0;
+    rightWrong.textContent = "Your Score: " + secondsLeft;
 };
 
 //Event listener section
