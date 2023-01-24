@@ -16,6 +16,10 @@ let answerOptions = document.querySelector(".answer-options");
 answerOptions.hidden = true;
 
 //Question and answer array assignments
+
+/*
+const questionArray = [ { question: "Roses Are:", answers: ["Red", "Stinky", Delicious, Insulting], correctAnswer: 1}]
+*/ 
 let questionList = ["Roses are:", "Violets are:", "I'm learning:", "What about:"];
 let answerOneArr = ["Red", "Also Red", "To Speak Klingon", "Yew"];
 let answerTwoArr = ["Stinky", "Weapons", "The Art of War", "You"];
@@ -73,12 +77,9 @@ function answerEval(event) {
     if (event.target.textContent !== correctAnswerARR[currentQuestion]) {      
         secondsLeft = secondsLeft - 15;     
     };
-    /*if (questionList[3]) {
+    if (currentQuestion == questionList.length - 1) {
         endQuiz();
-    };*/
-    /*if(currentQuestion >= currentQuestion.length) {
-        endQuiz();
-    }*/
+    };
     currentQuestion++;
     generateQuiz();
 };
@@ -98,21 +99,7 @@ answerTwo.addEventListener('click', answerEval);
 answerThree.addEventListener('click', answerEval);
 answerFour.addEventListener('click', answerEval);
 
-/*function questionOne() {
-    questionList.textContent = "Roses are:";
-};
 
-function questionTwo() {
-    questionList.textContent = "Violets are:";
-};
-
-function questionThree() {
-    questionList.textContent = "I'm learning:"
-};
-
-function questionFour() {
-    questionListt.textContent = "What about:";
-};*/
 /*Quiz needs to generate a new window with a set of four buttons with one correct answer
 above the buttons will be text that reads the question
 if the correct answer is hit, move on to next question
