@@ -3,7 +3,6 @@ let scoreDisplay = document.querySelector(".score-display");
 let timeDisplay = document.getElementById("time-display");
 let mainSection = document.querySelector(".main-container");
 let startButton = document.getElementById("start-button");
-let questionSlide = document.querySelector(".question");
 let mainTitle = document.querySelector("h1");
 let questionContent = document.querySelector(".question-content");
 let secondsLeft = 75;
@@ -16,6 +15,8 @@ let answerOptions = document.querySelector(".answer-options");
 answerOptions.hidden = true;
 let rightWrong = document.querySelector('.right-wrong');
 rightWrong.hidden = true;
+let finalScore = document.querySelector('.final-score');
+
 
 //Question and answer array assignments
  
@@ -26,7 +27,7 @@ let answerThreeArr = ["Delicious", "Blue", "JavaScript", "New"];
 let answerFourArr = ["Insulting", "Not Real", "The Meaninglessness of Life", "Shoe"];
 let currentQuestion = 0;
 let correctAnswerARR = ["Red", "Blue", "JavaScript", "You"];
-let finalScore = 0;
+finalScore = "";
 
 //Function section
 
@@ -89,8 +90,6 @@ function answerEval(event) {
     if (currentQuestion == questionList.length) {
         endQuiz();
     };
-    //currentQuestion++;
-    //generateQuiz();
 };
 
 function endQuiz() {
@@ -102,9 +101,11 @@ function endQuiz() {
     mainTitle.hidden = false;
     mainTitle.textContent = 'Great Job!';
     startButton.hidden = false;
-    //rightWrong.hidden = true;
     currentQuestion = 0;
-    rightWrong.textContent = "Your Score: " + secondsLeft;
+    finalScore.textContent = "Your Score: " + secondsLeft;
+    secondsLeft = 75;
+    finalScore.hidden = false;
+    rightWrong.hidden = true;
 };
 
 //Event listener section
