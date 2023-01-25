@@ -140,12 +140,12 @@ function showScores() {
     nameField.hidden = true;
     finalScore.hidden = true;
     list.hidden = false;
-    //enterScores();
+    enterScores();
 };
 
 /*function enterScores() {
     for (i = 0; i < currentScore.length; i++) {
-        //populateScore.textContent = element.userName + ' - ' + element.userScore;
+        //populateScore.textContent = (element.userName + ' - ' + element.userScore)[i];
         //populateScore.innerHTML = element.userName;
     };
 };*/
