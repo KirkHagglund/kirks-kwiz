@@ -23,11 +23,7 @@ let nameField = document.getElementById('hide');
 let submitBtn = document.getElementById('submit-name');
 let initials = document.getElementById('initials');
 let gameTime;
-
-let currentScore = JSON.parse(window.localStorage.getItem("highScore")) || [];
 let list = document.getElementById('score-list');
-let populateScore = document.createElement('li');
-list.appendChild(populateScore);
 list.hidden = true;
 
 
@@ -122,6 +118,7 @@ function endQuiz() {
 };
 
 function setScore() {
+    let currentScore = JSON.parse(window.localStorage.getItem("highScore")) || [];
     console.log(initials.value);
     let userRanking = {
         userName: '',
@@ -131,28 +128,27 @@ function setScore() {
     userRanking.userScore = secondsLeft;
     currentScore.push(userRanking);
     window.localStorage.setItem('highScore', JSON.stringify(currentScore));
-    nameField.hidden = true;
+    nameField.classList.add('hide');
 }
 
 function showScores() {
     mainTitle.textContent = "High Scores:"
-    console.log(currentScore);
-    nameField.hidden = true;
-    finalScore.hidden = true;
+    nameField.classList.add('hide');
+    finalScore.classList.add('hide');
     list.hidden = false;
     enterScores();
 };
 
-/*function enterScores() {
-    for (i = 0; i < currentScore.length; i++) {
-        //populateScore.textContent = (element.userName + ' - ' + element.userScore)[i];
-        //populateScore.innerHTML = element.userName;
-    };
-};*/
-
-currentScore.forEach(element => {
+function enterScores() {
+    let currentScore = JSON.parse(window.localStorage.getItem("highScore")) || [];
+    //list.appendChild(populateScore);
+    console.log(currentScore);
+    currentScore.forEach(element => {
+        let populateScore = document.createElement('li');
     populateScore.textContent = element.userName + ' - ' + element.userScore;
-});
+    list.appendChild(populateScore);
+});  
+};
 
 //Event listener section
 startButton.addEventListener("click", startGame);
