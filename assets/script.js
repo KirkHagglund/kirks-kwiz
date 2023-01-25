@@ -24,7 +24,15 @@ let submitBtn = document.getElementById('submit-name');
 let initials = document.getElementById('initials');
 let gameTime;
 
-let currentScore = JSON.parse(localStorage.getItem("highscores")) || [];
+let currentScore = JSON.parse(localStorage.getItem("highScore")) || [];
+let list = document.getElementById('score-list');
+let populateScore = document.createElement('li');
+list.appendChild(populateScore);
+list.hidden = true;
+/*currentScore.forEach(element => {
+
+    populateScore.textContent = element.userName + ' - ' + element.userScore;
+});*/
 
 //Question and answer array assignments
  
@@ -42,6 +50,8 @@ let correctAnswerARR = ["Red", "Blue", "JavaScript", "You"];
 let startGame = function() {
     startTimer();
     generateQuiz();
+    finalScore.hidden = true;
+    list.hideen = true;
 };
 
 
@@ -124,6 +134,7 @@ function setScore() {
     userRanking.userScore = secondsLeft;
     currentScore.push(userRanking);
     localStorage.setItem('highScore', JSON.stringify(currentScore));
+    nameField.hidden = true;
 }
 
 function showScores() {
@@ -131,9 +142,16 @@ function showScores() {
     console.log(currentScore);
     nameField.hidden = true;
     finalScore.hidden = true;
+    list.hidden = false;
 };
 
+currentScore.forEach(element => {
 
+    populateScore.textContent = element.userName + ' - ' + element.userScore;
+});
+
+/*var populateName = currentScore[0].userName;
+var populateScore = currentScore[0].userScore;*/
 
 //Event listener section
 startButton.addEventListener("click", startGame);

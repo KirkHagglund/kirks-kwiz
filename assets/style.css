@@ -126,3 +126,8 @@ h1 {
 .hide {
     display: none;
 }
+
+li {
+    color: var(--background);
+    font-size: 1rem;   
+}
