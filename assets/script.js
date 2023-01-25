@@ -29,10 +29,9 @@ let list = document.getElementById('score-list');
 let populateScore = document.createElement('li');
 list.appendChild(populateScore);
 list.hidden = true;
-/*currentScore.forEach(element => {
-
+currentScore.forEach(element => {
     populateScore.textContent = element.userName + ' - ' + element.userScore;
-});*/
+});
 
 //Question and answer array assignments
  
@@ -51,7 +50,7 @@ let startGame = function() {
     startTimer();
     generateQuiz();
     finalScore.hidden = true;
-    list.hideen = true;
+    list.hidden = true;
 };
 
 
