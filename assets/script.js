@@ -24,14 +24,13 @@ let submitBtn = document.getElementById('submit-name');
 let initials = document.getElementById('initials');
 let gameTime;
 
-let currentScore = JSON.parse(localStorage.getItem("highScore")) || [];
+let currentScore = JSON.parse(window.localStorage.getItem("highScore")) || [];
 let list = document.getElementById('score-list');
 let populateScore = document.createElement('li');
 list.appendChild(populateScore);
 list.hidden = true;
-currentScore.forEach(element => {
-    populateScore.textContent = element.userName + ' - ' + element.userScore;
-});
+
+
 
 //Question and answer array assignments
  
@@ -111,7 +110,6 @@ function answerEval(event) {
 function endQuiz() {
     questionContent.hidden = true;
     answerOptions.hidden = true;
-    console.log(finalScore);
     clearInterval(gameTime);
     mainTitle.hidden = false;
     mainTitle.textContent = 'Great Job!';
@@ -132,7 +130,7 @@ function setScore() {
     userRanking.userName = initials.value;
     userRanking.userScore = secondsLeft;
     currentScore.push(userRanking);
-    localStorage.setItem('highScore', JSON.stringify(currentScore));
+    window.localStorage.setItem('highScore', JSON.stringify(currentScore));
     nameField.hidden = true;
 }
 
@@ -142,15 +140,18 @@ function showScores() {
     nameField.hidden = true;
     finalScore.hidden = true;
     list.hidden = false;
+    enterScores();
 };
 
-currentScore.forEach(element => {
+/*function enterScores() {
+    for (i = 0; i < currentScore.length; i++) {
+        populateScore.textContent = element.userName + ' - ' + element.userScore;
+    };
+};*/
 
+currentScore.forEach(element => {
     populateScore.textContent = element.userName + ' - ' + element.userScore;
 });
-
-/*var populateName = currentScore[0].userName;
-var populateScore = currentScore[0].userScore;*/
 
 //Event listener section
 startButton.addEventListener("click", startGame);
