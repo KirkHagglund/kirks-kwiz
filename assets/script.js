@@ -5,7 +5,9 @@ let mainSection = document.querySelector(".main-container");
 let startButton = document.getElementById("start-button");
 let mainTitle = document.querySelector("h1");
 let questionContent = document.querySelector(".question-content");
-let secondsLeft = 75;
+let timer = 75;
+timeDisplay.textContent = "TIME LEFT: " + timer;
+let secondsLeft;
 let answerOne = document.getElementById("answer-one");
 let answerTwo = document.getElementById("answer-two");
 let answerThree = document.getElementById("answer-three");
@@ -16,7 +18,13 @@ answerOptions.hidden = true;
 let rightWrong = document.querySelector('.right-wrong');
 rightWrong.hidden = true;
 let finalScore = document.querySelector('.final-score');
+let highScores = document.querySelector('.high-scores');
+let nameField = document.getElementById('hide');
+let submitBtn = document.getElementById('submit-name');
+let initials = document.getElementById('initials');
+let gameTime;
 
+let currentScore = JSON.parse(localStorage.getItem("highscores")) || [];
 
 //Question and answer array assignments
  
@@ -37,14 +45,15 @@ let startGame = function() {
 };
 
 
-let gameTime = 0;
+
 
 //Create a start timer function to nest inside the start game function
 function startTimer() {
-    /*var */gameTime = setInterval(function() {
-        secondsLeft--;
-        timeDisplay.textContent = "TIME LEFT: " + secondsLeft;  
-        
+    
+    secondsLeft = timer;    
+        gameTime = setInterval(function() {
+        timeDisplay.textContent = "TIME LEFT: " + secondsLeft;
+        secondsLeft--;          
         if (secondsLeft <= 0) {
             clearInterval(gameTime);
             mainTitle.hidden = false;
@@ -53,7 +62,6 @@ function startTimer() {
             mainTitle.textContent = "You ran out of time!";
             answerOptions.hidden = true;
             startButton.hidden = false;
-            secondsLeft = 75;
         };
     }, 1000);
     startButton.hidden = true;
@@ -94,7 +102,6 @@ function answerEval(event) {
 function endQuiz() {
     questionContent.hidden = true;
     answerOptions.hidden = true;
-    //finalScore = secondsLeft;
     console.log(finalScore);
     clearInterval(gameTime);
     mainTitle.hidden = false;
@@ -102,10 +109,29 @@ function endQuiz() {
     startButton.hidden = false;
     currentQuestion = 0;
     finalScore.textContent = "Your Score: " + secondsLeft;
-    secondsLeft = 75;
     finalScore.hidden = false;
     rightWrong.hidden = true;
+    nameField.classList.remove('hide');
 };
+
+function setScore() {
+    console.log(initials.value);
+    let userRanking = {
+        userName: '',
+        userScore: ''
+    }
+    userRanking.userName = initials.value;
+    userRanking.userScore = secondsLeft;
+    currentScore.push(userRanking);
+    localStorage.setItem('highScore', JSON.stringify(currentScore));
+}
+
+function showScores() {
+    mainTitle.textContent = "High Scores:"
+    console.log(currentScore);
+};
+
+
 
 //Event listener section
 startButton.addEventListener("click", startGame);
@@ -113,22 +139,5 @@ answerOne.addEventListener('click', answerEval);
 answerTwo.addEventListener('click', answerEval);
 answerThree.addEventListener('click', answerEval);
 answerFour.addEventListener('click', answerEval);
-
-
-/*Quiz needs to generate a new window with a set of four buttons with one correct answer
-above the buttons will be text that reads the question
-if the correct answer is hit, move on to next question
-if the incorrect answer is clicked, take 15 seconds off the timer and move to next question
-
-repeat this section for three more questions
-upon completion of last question, new window with final score pops up.
-
-//Create a function to store the final score information in local storage
-//Create a function to pull the local storage information into a high score display box
-
-final score equal to time remaining
-new window also displays a game reset function and highscore clear button
-highscore display will need to pull info out of local storage
-
-Banner in html will need to have a button that navigates to high score display
-banner will include the timer text as well*/
+highScores.addEventListener('click', showScores);
+submitBtn.addEventListener('click', setScore)
