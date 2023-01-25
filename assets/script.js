@@ -129,6 +129,8 @@ function setScore() {
 function showScores() {
     mainTitle.textContent = "High Scores:"
     console.log(currentScore);
+    nameField.hidden = true;
+    finalScore.hidden = true;
 };
 
 
